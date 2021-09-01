@@ -1,0 +1,84 @@
+<nav class="navbar navbar-light" style="background: #8fc7ff;">
+    <div class="container-fluid">
+        <h1 style="color: ghostwhite">FEE MANAGEMENT</h1>
+        <div class="d-flex flex-row-reverse">
+            <button class="p-2 btn btn-warning" (click)="clickAddStudent()" 
+            data-bs-toggle="modal" data-bs-target="#static">Add Students</button>
+        </div>
+    </div>
+</nav>
+<table class="table table-bordered border-dark" style="font-size: 20px;padding: 0;">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Student Code</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Student Email</th>
+            <th scope="col">Mobile Number</th>
+            <th scope="col">Student Fees</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of studentAll">
+            <td>{{data.id}}</td>
+            <td>{{data.studentcode}}</td>
+            <td>{{data.firstname}}</td>
+            <td>{{data.lastname}}</td>
+            <td>{{data.email}}</td>
+            <td>+84{{data.mobile}}</td>
+            <td>{{data.fees | currency:'VND':'':'1.0-3'}} VND</td>
+            <td>
+                <button class="btn btn-primary" (click)="onEdit(data)" data-bs-toggle="modal" data-bs-target="#static" style="margin-right: 4px;">Edit</button>
+                <button (click)="deleteStudents(data)" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+    
+</table>
+
+<!-- Modal 1-->
+  <div class="modal fade" id="static" tabindex="-1" aria-labelledby="static" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Student Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="form">
+                <div class="mb-3">
+                  <span style="font-size: 15px;">Student Code</span>
+                  <input type="text" class="form-control" formControlName="studentcode" id="studentcode">
+                </div>
+                <div class="mb-3">
+                  <span style="font-size: 15px;">First Name</span>
+                  <input type="text" class="form-control" formControlName="firstname" id="firstname">
+                </div>
+                <div class="mb-3">
+                  <span style="font-size: 15px;">Last Name</span>
+                  <input type="text" class="form-control" formControlName="lastname" id="lastname">
+                </div>
+                <div class="mb-3">
+                    <span style="font-size: 15px;">Student Email</span>
+                    <input type="text" class="form-control" formControlName="email" id="email">
+                  </div>
+                <div class="mb-3">
+                    <span style="font-size: 15px;">Mobile Number <em>(Only number)</em></span>
+                    <input type="number" class="form-control" formControlName="mobile" id="mobilephone">
+                </div>
+                <div class="mb-3">
+                    <span style="font-size: 15px;">Student Fees <em>(Only number)</em></span>
+                    <input type="number" class="form-control" formControlName="fees" id="studentfee">
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" *ngIf="showAdd" (click)="postStudentDetails()" class="btn btn-primary">Add</button>
+          <button type="button" *ngIf="showUpdate" (click)="updateStudentDetails()" class="btn btn-primary">Update</button>
+          <button type="button" (click)="getAllStudents()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

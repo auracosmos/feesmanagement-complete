@@ -1,0 +1,32 @@
+﻿<div class="full-web">
+    <nav class="navbar navbar-expand navbar-dark bg-light">
+        <div class="navbar-nav ml-auto" style="font-size: 17px">
+            <a class="nav-item nav-link" href="https://ntt.edu.vn/" target="_blank">
+                <img src="assets/images/banner.gif" style="width:auto; height: auto;" alt="banner_nttu"> </a>
+        </div>
+    </nav>
+    <nav class="navbar navbar-expand navbar-dark bg-primary" *ngIf="!user" >
+        <div class="navbar-nav ms-auto" style="font-size: 17px;">
+            <a class="nav-item nav-link"  routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+            <a class="nav-item nav-link"  routerLink="/account/login" routerLinkActive="active">Login</a>
+            <a class="nav-item nav-link"  routerLink="/account/register"routerLinkActive="active">Register</a>
+        </div>
+       
+    </nav>
+    <nav class="navbar navbar-expand navbar-dark bg-primary"  *ngIf="user">
+        <div class="navbar-nav ms-auto" style="font-size: 17px;">
+            <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Home</a>
+            <a class="nav-item nav-link" routerLink="/users/edit/{{user.id}}" routerLinkActive="active">User</a>
+            <a class="nav-item nav-link" routerLink="/student-fees" routerLinkActive="active">Student Fee</a>
+            <a class="nav-item nav-link"(click)="logout()">Logout</a>
+        </div>
+    </nav>
+    <div >
+        <alert></alert>
+        <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </div>
+</div>
+
+    

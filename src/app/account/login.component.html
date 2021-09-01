@@ -1,0 +1,40 @@
+﻿<body>
+    <div class="main" style="padding:0; zoom: 90%;">
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="assets/images/nttu.jpg" alt="sing up image"></figure>
+                        <a routerLink="../register" class="signup-image-link">Create an account</a>
+                    </div>
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign In</h2>
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <input type="text" formControlName="username" placeholder="Username" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                    <div *ngIf="f.username.errors.required">Username is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" formControlName="password" placeholder="Password" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button [disabled]="loading" class="btn btn-primary">
+                                    <span *ngIf="loading"  class="spinner-border spinner-border-sm mr-1"></span>
+                                    Login
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+</body>
